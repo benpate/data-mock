@@ -19,7 +19,7 @@ func MatcherFunc(object data.Object) exp.MatcherFunc {
 
 		_, field, ok := findField(structure, value, predicate.Field)
 
-		if ok == false {
+		if !ok {
 			return false
 		}
 

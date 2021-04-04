@@ -34,7 +34,7 @@ func (server Server) hasCollection(collection string) bool {
 // getCollection loads (and creates, if necessary) the named collection in this datastore
 func (server Server) getCollection(collection string) []data.Object {
 
-	if server.hasCollection(collection) == false {
+	if !server.hasCollection(collection) {
 		server[collection] = []data.Object{}
 	}
 

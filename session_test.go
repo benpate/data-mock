@@ -82,18 +82,6 @@ func TestSession(t *testing.T) {
 		assert.Equal(t, "sarah@sky.net", person2.Email)
 		assert.Equal(t, "Comment Here", person2.Journal.Note)
 	}
-
-	return
-
-	/*
-		// "NOT FOUND"
-		{
-			person := testPerson{}
-			criteria := exp.Equal("missind", "=", "A")
-			err := session.Load("Person", criteria, &person)
-			assert.NotNil(t, err)
-		}
-	*/
 }
 
 func TestList(t *testing.T) {
