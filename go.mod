@@ -1,6 +1,6 @@
 module github.com/benpate/data-mock
 
-go 1.16
+go 1.17
 
 require (
 	github.com/benpate/compare v0.0.4
@@ -8,4 +8,12 @@ require (
 	github.com/benpate/derp v0.21.0
 	github.com/benpate/exp v0.0.2
 	github.com/stretchr/testify v1.7.0
+)
+
+require (
+	github.com/benpate/convert v0.9.2 // indirect
+	github.com/benpate/null v0.6.0 // indirect
+	github.com/davecgh/go-spew v1.1.1 // indirect
+	github.com/pmezard/go-difflib v1.0.0 // indirect
+	gopkg.in/yaml.v3 v3.0.0-20200313102051-9f266ea9e77c // indirect
 )

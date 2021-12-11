@@ -104,6 +104,10 @@ func (collection Collection) Delete(object data.Object, comment string) error {
 	return nil
 }
 
+func (collection Collection) HardDelete(object data.Object) error {
+	return collection.Delete(object, "hard delete")
+}
+
 func (collection Collection) getObjects() []data.Object {
 	return (*collection.Server)[collection.Name]
 }
