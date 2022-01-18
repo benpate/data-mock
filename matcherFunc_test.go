@@ -189,7 +189,7 @@ func TestMatch(t *testing.T) {
 
 	// Test multiple fields
 	{
-		exp := exp.New("name", "=", "John Connor").And("_id", "=", "42")
+		exp := exp.New("name", "=", "John Connor").AndEqual("_id", "42")
 		assert.True(t, exp.Match(MatcherFunc(&john)))
 		assert.False(t, exp.Match(MatcherFunc(&sarah)))
 		assert.False(t, exp.Match(MatcherFunc(&kyle)))
@@ -197,7 +197,7 @@ func TestMatch(t *testing.T) {
 
 	{
 		// Test multiple fields
-		exp := exp.New("name", ">", "John Connor").And("_id", "<", "44")
+		exp := exp.New("name", ">", "John Connor").AndLessThan("_id", "44")
 		assert.False(t, exp.Match(MatcherFunc(&john)))
 		assert.True(t, exp.Match(MatcherFunc(&sarah)))
 		assert.False(t, exp.Match(MatcherFunc(&kyle)))
