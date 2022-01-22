@@ -2,7 +2,7 @@ package mockdb
 
 import (
 	"github.com/benpate/data/journal"
-	"github.com/benpate/path"
+	"github.com/benpate/derp"
 )
 
 type testPerson struct {
@@ -17,10 +17,10 @@ func (person testPerson) ID() string {
 	return person.PersonID
 }
 
-func (person testPerson) GetPath(p path.Path) (interface{}, error) {
-	return nil, nil
+func (person testPerson) GetPath(p string) (interface{}, bool) {
+	return nil, false
 }
 
-func (person *testPerson) SetPath(p path.Path, value interface{}) error {
-	return nil
+func (person *testPerson) SetPath(p string, value interface{}) error {
+	return derp.NewInternalError("data-mock.testPerson", "Unsupported GetPath", p)
 }
