@@ -7,7 +7,7 @@ require (
 	github.com/benpate/data v0.14.0
 	github.com/benpate/derp v0.22.2
 	github.com/benpate/exp v0.1.0
-	github.com/benpate/path v0.8.0
+	github.com/benpate/path v0.8.1
 	github.com/stretchr/testify v1.7.0
 )
 
