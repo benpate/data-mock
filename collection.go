@@ -104,7 +104,7 @@ func (collection Collection) Delete(object data.Object, comment string) error {
 	return nil
 }
 
-func (collection Collection) HardDelete(object data.Object) error {
+func (collection Collection) HardDelete(criteria exp.Expression) error {
 	return collection.Delete(object, "hard delete")
 }
 
