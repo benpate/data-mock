@@ -105,7 +105,7 @@ func (collection Collection) Delete(object data.Object, comment string) error {
 }
 
 func (collection Collection) HardDelete(criteria exp.Expression) error {
-	return collection.Delete(object, "hard delete")
+	return derp.NewBadRequestError("data-mock.connection.HardDelete", "Not implemented", criteria)
 }
 
 func (collection Collection) getObjects() []data.Object {
