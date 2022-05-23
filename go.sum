@@ -2,12 +2,12 @@ github.com/benpate/compare v0.1.1 h1:rpO2mLSWFEReq/hCKd4ULxJV+HSJLYINORodg8rMvMQ
 github.com/benpate/compare v0.1.1/go.mod h1:djtVm+GtoMdMKsdbOdYtd4H4/mV2sL2l/SnqiPexECU=
 github.com/benpate/convert v0.12.0 h1:N4aTPQabpyoIgUSZNmkeP3t/kZo72rWaYQ9oX0ggBds=
 github.com/benpate/convert v0.12.0/go.mod h1:kcwWFWAQFvp6s9s/w74gXIYRDvH7pqt83Ad9YIuwo8s=
-github.com/benpate/data v0.16.0 h1:Zkv5XwgYP9BGuX8MqQ1gBDCt/4Kr86knB8YHqzDvGrQ=
-github.com/benpate/data v0.16.0/go.mod h1:3SAaSNNExLhft16b68okYE/S/SU+aMqQ7qMtWvHAbQw=
+github.com/benpate/data v0.16.1 h1:AUD1pLoIE5vr/rfg/BjB8/aaxjM5dmY1VRqU3Nw6BTA=
+github.com/benpate/data v0.16.1/go.mod h1:EBztCYsIDiMfSPN7BrRfQ11wVlNBBjrMirTJ3s1CE1c=
 github.com/benpate/derp v0.22.2 h1:qPcnT32VG8gqhDR4y+dhK2n/0TMvZ3RUP+HbENNogAc=
 github.com/benpate/derp v0.22.2/go.mod h1:ENjMpkMmxn9gAulMAggElVcD2kNrsbjFhoZK8fUlCxY=
-github.com/benpate/exp v0.1.1 h1:3Wao3iVt7HrN4g07DIP9WeQgiBPzFQ+kZsdT3ba4UxU=
-github.com/benpate/exp v0.1.1/go.mod h1:AELV4lX/Jr7GF8D46oYLFnXpH89jogoc61UWY86I8lk=
+github.com/benpate/exp v0.1.2 h1:ObMSaZdDIUOsa6YZ65lu841iSZbeVcBRJB/qU/RkVns=
+github.com/benpate/exp v0.1.2/go.mod h1:nunmsFtzwgv8kFBZYyR2aPhblyJ7T6JLMqZxZupOjCE=
 github.com/benpate/list v0.4.2/go.mod h1:qT9JMhKPxIP97Gsr+mUfvuGwwDfKsfR/jfRuWj0ogLc=
 github.com/benpate/null v0.6.1 h1:MInsq7/M9E9IzF6EWeB1po5p9zQpvimw3brrU1UeRzA=
 github.com/benpate/null v0.6.1/go.mod h1:gxun/MktUPdKfYWvkzCI2fCy3OX/3+sZWh01hjYdXwE=
@@ -43,7 +43,7 @@ github.com/xdg-go/pbkdf2 v1.0.0/go.mod h1:jrpuAogTd400dnrH08LKmI/xc1MbPOebTwRqcT
 github.com/xdg-go/scram v1.0.2/go.mod h1:1WAq6h33pAW+iRreB34OORO2Nf7qel3VV3fjBj+hCSs=
 github.com/xdg-go/stringprep v1.0.2/go.mod h1:8F9zXuvzgwmyT5DUm4GUfZGDdT3W+LCvS6+da4O5kxM=
 github.com/youmark/pkcs8 v0.0.0-20181117223130-1be2e3e5546d/go.mod h1:rHwXgn7JulP+udvsHwJoVG1YGAP6VLg4y9I5dyZdqmA=
-go.mongodb.org/mongo-driver v1.8.2/go.mod h1:0sQWfOeY63QTntERDJJ/0SuKK0T1uVSgKCuAROlKEPY=
+go.mongodb.org/mongo-driver v1.9.1/go.mod h1:0sQWfOeY63QTntERDJJ/0SuKK0T1uVSgKCuAROlKEPY=
 golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2/go.mod h1:djNgcEr1/C05ACkg1iLfiJU5Ep61QUkGW8qpdssI0+w=
 golang.org/x/crypto v0.0.0-20201216223049-8b5274cf687f/go.mod h1:jdWPYTVW3xRLrWPugEBEK3UY2ZEsg3UU495nc5E+M+I=
 golang.org/x/net v0.0.0-20190311183353-d8887717615a/go.mod h1:t9HGtf8HONx5eT2rtn7q6eTqICYqUVnKs3thJo3Qplg=

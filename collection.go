@@ -18,6 +18,10 @@ type Collection struct {
 	Name    string
 }
 
+func (collection Collection) Query(target interface{}, criteria exp.Expression, options ...option.Option) error {
+	return derp.NewInternalError("data-mock.collection.Query", "Unimplemented")
+}
+
 // List retrieves a group of records as an Iterator.
 func (collection Collection) List(criteria exp.Expression, options ...option.Option) (data.Iterator, error) {
 
