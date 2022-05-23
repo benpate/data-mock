@@ -1,12 +1,12 @@
 module github.com/benpate/data-mock
 
-go 1.17
+go 1.18
 
 require (
 	github.com/benpate/compare v0.1.1
-	github.com/benpate/data v0.16.1
+	github.com/benpate/data v0.16.2
 	github.com/benpate/derp v0.22.2
-	github.com/benpate/exp v0.1.2
+	github.com/benpate/exp v0.1.4
 	github.com/stretchr/testify v1.7.1
 )
 
