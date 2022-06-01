@@ -11,7 +11,7 @@ require (
 )
 
 require (
-	github.com/benpate/convert v0.12.0 // indirect
+	github.com/benpate/convert v0.13.0 // indirect
 	github.com/benpate/null v0.6.1 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/kr/pretty v0.3.0 // indirect
