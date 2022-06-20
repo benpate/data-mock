@@ -4,7 +4,7 @@ import (
 	"reflect"
 )
 
-func populateInterface(source interface{}, target interface{}) error {
+func populateInterface(source any, target any) error {
 
 	sourceValue := reflect.ValueOf(source)
 
