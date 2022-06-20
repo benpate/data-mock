@@ -3,9 +3,9 @@ package mockdb
 import (
 	"reflect"
 
-	"github.com/benpate/compare"
 	"github.com/benpate/data"
 	"github.com/benpate/exp"
+	"github.com/benpate/rosetta/compare"
 )
 
 // MatcherFunc is a helper function that uses reflection to look inside a generic data.Object and match it.

@@ -3,7 +3,7 @@ module github.com/benpate/data-mock
 go 1.18
 
 require (
-	github.com/benpate/compare v0.1.3
+	github.com/benpate/rosetta v0.2.0
 	github.com/benpate/data v0.16.2
 	github.com/benpate/derp v0.22.2
 	github.com/benpate/exp v0.1.4
@@ -11,8 +11,6 @@ require (
 )
 
 require (
-	github.com/benpate/convert v0.13.5 // indirect
-	github.com/benpate/null v0.6.4 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/kr/pretty v0.3.0 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect

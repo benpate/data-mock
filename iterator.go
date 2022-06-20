@@ -4,9 +4,9 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/benpate/compare"
 	"github.com/benpate/data"
 	"github.com/benpate/data/option"
+	"github.com/benpate/rosetta/compare"
 )
 
 // Iterator represents a generic set of data that can be returned by a datasource.
