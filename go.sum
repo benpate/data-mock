@@ -1,11 +1,11 @@
-github.com/benpate/data v0.17.0 h1:Inf6mFVQb4UIV9t9h+ddKUuyhmlETUJeMSqTw+91lTM=
-github.com/benpate/data v0.17.0/go.mod h1:g5pNJ4bXK45w6W7ndtm80KfhToktcyze5CL/NSBsgAU=
-github.com/benpate/derp v0.22.2 h1:qPcnT32VG8gqhDR4y+dhK2n/0TMvZ3RUP+HbENNogAc=
-github.com/benpate/derp v0.22.2/go.mod h1:ENjMpkMmxn9gAulMAggElVcD2kNrsbjFhoZK8fUlCxY=
-github.com/benpate/exp v0.2.0 h1:W9Dt2WvQdzrxBzxQXGdUA5xWZkG+WmdCSG6Y3Cozyo0=
-github.com/benpate/exp v0.2.0/go.mod h1:1JOqo8px/6hzeH9ozCL4CUk0PFP3VQsX1xK2AKsweKg=
-github.com/benpate/rosetta v0.2.2 h1:HGh0w0hbGjrARXIR+n2S+AEtRbKrdFB5ZjGsw/ePNzU=
-github.com/benpate/rosetta v0.2.2/go.mod h1:MNwKpW8FqxEbkWt1USubDyBlNYMSBeMzaqWWb7R4S6Y=
+github.com/benpate/data v0.18.0 h1:YlgukebDCQg/bf00YCBAORtkJE8w8DCr29VQN61bV6A=
+github.com/benpate/data v0.18.0/go.mod h1:EXWXvfpPdZ2TF1b0Q2ML35MaYhxtnE2g3WxZ8/m12vk=
+github.com/benpate/derp v0.23.0 h1:cfHgXZu0xXCgypvYdtHjQPPqrKEUPhsH0Ff48ke3Mf8=
+github.com/benpate/derp v0.23.0/go.mod h1:tTYfod3k1+5PcngPg8RgeOPvb/YsiQuBIEu4eFq4P+Q=
+github.com/benpate/exp v0.3.0 h1:vhpZvbIhza6zc6/fKBkrs0Fhs8k2xbqzz6ppddh+x5E=
+github.com/benpate/exp v0.3.0/go.mod h1:PPAdBEwFCbwr8QNFl6iXU27mv/6z/P5JtefuPD27mcg=
+github.com/benpate/rosetta v0.3.0 h1:Vxc2mZm6ZHO3jylOz+Jl1GdjGgBoPRWUSgEBrmpmeMc=
+github.com/benpate/rosetta v0.3.0/go.mod h1:Pj8wx0ZMot2tVpIJHqMimgM2hjtMKjKt4hMkmWJvkis=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
@@ -16,7 +16,6 @@ github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZN
 github.com/rogpeppe/go-internal v1.8.1 h1:geMPLpDpQOgVyCg5z5GoRwLHepNdb71NXb67XFkP+Eg=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
 github.com/stretchr/objx v0.4.0/go.mod h1:YvHI0jy2hoMjB+UWwv71VJQ9isScKT/TqJzVSSt89Yw=
-github.com/stretchr/testify v1.6.1/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/h/Wwjteg=
 github.com/stretchr/testify v1.7.1/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/h/Wwjteg=
 github.com/stretchr/testify v1.7.4 h1:wZRexSlwd7ZXfKINDLsO4r7WBt3gTKONc6K/VesHvHM=
 github.com/stretchr/testify v1.7.4/go.mod h1:yNjHg4UonilssWZ8iaSj1OCr/vHnekPRkoO+kdMU+MU=
