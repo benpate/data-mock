@@ -6,7 +6,7 @@ require (
 	github.com/benpate/data v0.19.0
 	github.com/benpate/derp v0.24.0
 	github.com/benpate/exp v0.5.0
-	github.com/benpate/rosetta v0.5.0
+	github.com/benpate/rosetta v0.5.1
 	github.com/stretchr/testify v1.8.0
 )
 
