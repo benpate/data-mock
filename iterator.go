@@ -41,7 +41,7 @@ func (iterator *Iterator) Count() int {
 // If there is another record in the dataset, it returns TRUE, and
 // writes the next record to the "output" variable.
 // If there are no more records, it returns FALSE.
-func (iterator *Iterator) Next(output data.Object) bool {
+func (iterator *Iterator) Next(output any) bool {
 
 	if iterator.Counter >= len(iterator.Data) {
 		return false
