@@ -58,6 +58,10 @@ func (iterator *Iterator) Close() error {
 	return nil
 }
 
+func (iterator *Iterator) Error() error {
+	return nil
+}
+
 /// THESE FUNCTIONS IMPLEMENT THE Sort.Interface INTERFACE
 
 // Len returns the number of elements in the collection.
