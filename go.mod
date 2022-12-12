@@ -3,11 +3,11 @@ module github.com/benpate/data-mock
 go 1.18
 
 require (
-	github.com/benpate/data v0.20.0
-	github.com/benpate/derp v0.25.0
-	github.com/benpate/exp v0.5.0
-	github.com/benpate/rosetta v0.6.2
-	github.com/stretchr/testify v1.8.0
+	github.com/benpate/data v0.22.0
+	github.com/benpate/derp v0.25.1
+	github.com/benpate/exp v0.6.0
+	github.com/benpate/rosetta v0.7.0
+	github.com/stretchr/testify v1.8.1
 )
 
 require (
