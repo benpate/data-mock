@@ -17,10 +17,10 @@ func (person testPerson) ID() string {
 	return person.PersonID
 }
 
-func (person testPerson) GetPath(p string) (interface{}, bool) {
+func (person testPerson) GetPath(p string) (any, bool) {
 	return nil, false
 }
 
-func (person *testPerson) SetPath(p string, value interface{}) error {
+func (person *testPerson) SetPath(p string, value any) error {
 	return derp.NewInternalError("data-mock.testPerson", "Unsupported GetPath", p)
 }

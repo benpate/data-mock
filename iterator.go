@@ -93,10 +93,10 @@ func (iterator *Iterator) Less(i int, j int) bool {
 		// Only use "sort" type options
 		if record, ok := record.(option.SortConfig); ok {
 
-			// Try to find the interface{} value for object1
+			// Try to find the any value for object1
 			if field1, ok := safeFieldInterface(object1, record.FieldName); ok {
 
-				// Try to find the interface{} value for object1
+				// Try to find the any value for object1
 				if field2, ok := safeFieldInterface(object2, record.FieldName); ok {
 
 					// Use generic data.Compare function to compare them
@@ -151,7 +151,7 @@ func (iterator *Iterator) Swap(i int, j int) {
 	iterator.Data[j] = temp
 }
 
-func safeFieldInterface(object interface{}, fieldName string) (interface{}, bool) {
+func safeFieldInterface(object any, fieldName string) (any, bool) {
 
 	// If the object is empty, then so is the field
 	if object == nil {
