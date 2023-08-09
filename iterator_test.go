@@ -48,7 +48,7 @@ func TestIterator2(t *testing.T) {
 		collection.Save(record, "Initial Insert")
 	}
 
-	it, err := collection.List(nil, option.SortAsc("name"))
+	it, err := collection.Iterator(nil, option.SortAsc("name"))
 
 	if err != nil {
 		t.Error(err)

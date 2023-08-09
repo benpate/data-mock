@@ -97,7 +97,7 @@ func TestList(t *testing.T) {
 
 	criteria := exp.Equal("_id", "A")
 
-	it, err := collection.List(criteria)
+	it, err := collection.Iterator(criteria)
 
 	assert.Nil(t, err)
 

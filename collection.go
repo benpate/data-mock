@@ -18,12 +18,25 @@ type Collection struct {
 	Name    string
 }
 
+func (collection Collection) Count(criteria exp.Expression, options ...option.Option) (int64, error) {
+
+	var count int64
+
+	for _, document := range collection.Server.getCollection(collection.Name) {
+		if criteria.Match(MatcherFunc(document)) {
+			count++
+		}
+	}
+
+	return count, nil
+}
+
 func (collection Collection) Query(target any, criteria exp.Expression, options ...option.Option) error {
 	return derp.NewInternalError("data-mock.collection.Query", "Unimplemented")
 }
 
 // List retrieves a group of records as an Iterator.
-func (collection Collection) List(criteria exp.Expression, options ...option.Option) (data.Iterator, error) {
+func (collection Collection) Iterator(criteria exp.Expression, options ...option.Option) (data.Iterator, error) {
 
 	result := []data.Object{}
 
