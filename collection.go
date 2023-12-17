@@ -72,7 +72,8 @@ func (collection Collection) Load(criteria exp.Expression, target data.Object) e
 	for _, document := range c {
 
 		if (criteria == nil) || (criteria.Match(MatcherFunc(document))) {
-			return populateInterface(document, target)
+			populateInterface(document, target)
+			return nil
 		}
 	}
 

@@ -4,7 +4,7 @@ import (
 	"reflect"
 )
 
-func populateInterface(source any, target any) error {
+func populateInterface(source any, target any) {
 
 	sourceValue := reflect.ValueOf(source)
 
@@ -24,6 +24,4 @@ func populateInterface(source any, target any) error {
 			targetField.Set(sourceValue.FieldByName(sourceField.Name))
 		}
 	}
-
-	return nil
 }
