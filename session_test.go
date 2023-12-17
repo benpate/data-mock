@@ -7,6 +7,7 @@ import (
 	"github.com/benpate/derp"
 	"github.com/benpate/exp"
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 // MODEL OBJECT
@@ -91,9 +92,9 @@ func TestList(t *testing.T) {
 	session, _ := ds.Session(context.TODO())
 	collection := session.Collection("Person")
 
-	collection.Save(&testPerson{PersonID: "A", Name: "Sarah Connor", Email: "sarah@sky.net"}, "Creating Record")
-	collection.Save(&testPerson{PersonID: "B", Name: "John Connor", Email: "john@connor.com"}, "Creating Record")
-	collection.Save(&testPerson{PersonID: "C", Name: "Kyle Reese", Email: "kyle@resistance.mil"}, "Creating Record")
+	require.Nil(t, collection.Save(&testPerson{PersonID: "A", Name: "Sarah Connor", Email: "sarah@sky.net"}, "Creating Record"))
+	require.Nil(t, collection.Save(&testPerson{PersonID: "B", Name: "John Connor", Email: "john@connor.com"}, "Creating Record"))
+	require.Nil(t, collection.Save(&testPerson{PersonID: "C", Name: "Kyle Reese", Email: "kyle@resistance.mil"}, "Creating Record"))
 
 	criteria := exp.Equal("_id", "A")
 

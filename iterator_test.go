@@ -7,6 +7,7 @@ import (
 	"github.com/benpate/data"
 	"github.com/benpate/data/option"
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 func TestIterator1(t *testing.T) {
@@ -45,7 +46,8 @@ func TestIterator2(t *testing.T) {
 	collection := session.Collection("Person")
 
 	for _, record := range data {
-		collection.Save(record, "Initial Insert")
+		err := collection.Save(record, "Initial Insert")
+		require.Nil(t, err)
 	}
 
 	it, err := collection.Iterator(nil, option.SortAsc("name"))

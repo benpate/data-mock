@@ -3,7 +3,7 @@ package mockdb
 import (
 	"testing"
 
-	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 func TestPopulateInterface(t *testing.T) {
@@ -30,13 +30,13 @@ func TestPopulateInterface(t *testing.T) {
 
 	// Populate directly from object
 	populateInterface(john, &target)
-	assert.Equal(t, 1, target.ID)
-	assert.Equal(t, "John Connor", target.Name)
-	assert.Equal(t, "john@connor.com", target.Email)
+	require.Equal(t, 1, target.ID)
+	require.Equal(t, "John Connor", target.Name)
+	require.Equal(t, "john@connor.com", target.Email)
 
 	// Overwrite and populate from pointer
 	populateInterface(&sarah, &target)
-	assert.Equal(t, 2, target.ID)
-	assert.Equal(t, "Sarah Connor", target.Name)
-	assert.Equal(t, "sarah@sky.net", target.Email)
+	require.Equal(t, 2, target.ID)
+	require.Equal(t, "Sarah Connor", target.Name)
+	require.Equal(t, "sarah@sky.net", target.Email)
 }
