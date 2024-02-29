@@ -6,9 +6,9 @@ toolchain go1.21.6
 
 require (
 	github.com/benpate/data v0.28.4
-	github.com/benpate/derp v0.30.0
+	github.com/benpate/derp v0.31.0
 	github.com/benpate/exp v0.8.3
-	github.com/benpate/rosetta v0.19.4
+	github.com/benpate/rosetta v0.20.0
 	github.com/stretchr/testify v1.8.4
 )
 
