@@ -91,7 +91,7 @@ func (iterator *Iterator) Less(i int, j int) bool {
 	for _, record := range iterator.Options {
 
 		// Only use "sort" type options
-		if record, ok := record.(option.SortConfig); ok {
+		if record, ok := record.(option.SortOption); ok {
 
 			// Try to find the any value for object1
 			if field1, ok := safeFieldInterface(object1, record.FieldName); ok {
