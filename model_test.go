@@ -22,5 +22,5 @@ func (person testPerson) GetPath(p string) (any, bool) {
 }
 
 func (person *testPerson) SetPath(p string, value any) error {
-	return derp.NewInternalError("data-mock.testPerson", "Unsupported GetPath", p)
+	return derp.InternalError("data-mock.testPerson", "Unsupported GetPath", p)
 }

@@ -32,7 +32,7 @@ func (collection Collection) Count(criteria exp.Expression, options ...option.Op
 }
 
 func (collection Collection) Query(target any, criteria exp.Expression, options ...option.Option) error {
-	return derp.NewInternalError("data-mock.collection.Query", "Unimplemented")
+	return derp.InternalError("data-mock.collection.Query", "Unimplemented")
 }
 
 // List retrieves a group of records as an Iterator.
@@ -41,7 +41,7 @@ func (collection Collection) Iterator(criteria exp.Expression, options ...option
 	result := []data.Object{}
 
 	if !collection.Server.hasCollection(collection.Name) {
-		return NewIterator(result), derp.NewNotFoundError("mockdb.Load", "Collection does not exist", collection)
+		return NewIterator(result), derp.NotFoundError("mockdb.Load", "Collection does not exist", collection)
 	}
 
 	c := collection.Server.getCollection(collection.Name)
@@ -64,7 +64,7 @@ func (collection Collection) Iterator(criteria exp.Expression, options ...option
 func (collection Collection) Load(criteria exp.Expression, target data.Object) error {
 
 	if !collection.Server.hasCollection(collection.Name) {
-		return derp.NewNotFoundError("mockdb.Load", "Collection does not exist", collection)
+		return derp.NotFoundError("mockdb.Load", "Collection does not exist", collection)
 	}
 
 	c := collection.Server.getCollection(collection.Name)
@@ -77,14 +77,14 @@ func (collection Collection) Load(criteria exp.Expression, target data.Object) e
 		}
 	}
 
-	return derp.NewNotFoundError("mockdb.Load", "Document not found", criteria)
+	return derp.NotFoundError("mockdb.Load", "Document not found", criteria)
 }
 
 // Save adds/inserts a new record into the mock database
 func (collection Collection) Save(object data.Object, comment string) error {
 
 	if strings.HasPrefix(comment, "ERROR") {
-		return derp.NewInternalError("mockdb.Save", "Synthetic Error", comment)
+		return derp.InternalError("mockdb.Save", "Synthetic Error", comment)
 	}
 
 	c := collection.Server.getCollection(collection.Name)
@@ -103,14 +103,14 @@ func (collection Collection) Save(object data.Object, comment string) error {
 		return nil
 	}
 
-	return derp.NewInternalError("mockdb.Save", "Object Not Found", "attempted to update object, but it does not exist in the datastore", object)
+	return derp.InternalError("mockdb.Save", "Object Not Found", "attempted to update object, but it does not exist in the datastore", object)
 }
 
 // Delete PERMANENTLY removes a record from the mock database.
 func (collection Collection) Delete(object data.Object, comment string) error {
 
 	if strings.HasPrefix(comment, "ERROR") {
-		return derp.NewInternalError("mockdb.Delete", "Synthetic Error", comment)
+		return derp.InternalError("mockdb.Delete", "Synthetic Error", comment)
 	}
 
 	c := collection.Server.getCollection(collection.Name)
@@ -123,7 +123,7 @@ func (collection Collection) Delete(object data.Object, comment string) error {
 }
 
 func (collection Collection) HardDelete(criteria exp.Expression) error {
-	return derp.NewBadRequestError("data-mock.connection.HardDelete", "Not implemented", criteria)
+	return derp.NotImplementedError("data-mock.connection.HardDelete", "Not implemented", criteria)
 }
 
 func (collection Collection) getObjects() []data.Object {
