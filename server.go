@@ -18,8 +18,8 @@ func New() data.Server {
 func (server Server) Session(ctx context.Context) (data.Session, error) {
 
 	return Session{
-		Server:  &server,
-		Context: ctx,
+		server:  &server,
+		context: ctx,
 	}, nil
 }
 

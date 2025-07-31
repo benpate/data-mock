@@ -81,7 +81,7 @@ func TestSession(t *testing.T) {
 		assert.Nil(t, err)
 		assert.Equal(t, "Sarah Connor", person2.Name)
 		assert.Equal(t, "sarah@sky.net", person2.Email)
-		assert.Equal(t, "Comment Here", person2.Journal.Note)
+		assert.Equal(t, "Comment Here", person2.Note)
 	}
 }
 
