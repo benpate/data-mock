@@ -23,6 +23,16 @@ func (server Server) Session(ctx context.Context) (data.Session, error) {
 	}, nil
 }
 
+func (server Server) WithTransaction(ctx context.Context, fn data.TransactionCallbackFunc) (any, error) {
+	session, err := server.Session(ctx)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return fn(session)
+}
+
 // hasCollection returns TRUE if the designated collection already exists in the Server
 func (server Server) hasCollection(collection string) bool {
 

@@ -4,6 +4,7 @@ import (
 	"context"
 	"testing"
 
+	"github.com/benpate/data"
 	"github.com/benpate/derp"
 	"github.com/benpate/exp"
 	"github.com/stretchr/testify/assert"
@@ -11,6 +12,22 @@ import (
 )
 
 // MODEL OBJECT
+
+func TestDataType(t *testing.T) {
+	var server data.Server
+	var session data.Session
+	var collection data.Collection
+	var err error
+
+	server = New()
+	session, err = server.Session(context.TODO())
+	collection = session.Collection("Person")
+
+	require.NotNil(t, server)
+	require.NotNil(t, session)
+	require.NotNil(t, collection)
+	require.Nil(t, err)
+}
 
 func TestDelete(t *testing.T) {
 

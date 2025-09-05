@@ -5,11 +5,11 @@ go 1.23.0
 toolchain go1.24.1
 
 require (
-	github.com/benpate/data v0.30.0
-	github.com/benpate/derp v0.32.2
-	github.com/benpate/exp v0.8.5
-	github.com/benpate/rosetta v0.25.6
-	github.com/stretchr/testify v1.10.0
+	github.com/benpate/data v0.31.0
+	github.com/benpate/derp v0.32.8
+	github.com/benpate/exp v0.8.6
+	github.com/benpate/rosetta v0.25.15
+	github.com/stretchr/testify v1.11.1
 )
 
 require (

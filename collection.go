@@ -13,16 +13,20 @@ import (
 
 // Collection is a mock database collection
 type Collection struct {
-	Server  *Server
-	Context context.Context
-	Name    string
+	server  *Server
+	context context.Context
+	name    string
+}
+
+func (collection Collection) Context() context.Context {
+	return collection.context
 }
 
 func (collection Collection) Count(criteria exp.Expression, options ...option.Option) (int64, error) {
 
 	var count int64
 
-	for _, document := range collection.Server.getCollection(collection.Name) {
+	for _, document := range collection.server.getCollection(collection.name) {
 		if criteria.Match(MatcherFunc(document)) {
 			count++
 		}
@@ -40,11 +44,11 @@ func (collection Collection) Iterator(criteria exp.Expression, options ...option
 
 	result := []data.Object{}
 
-	if !collection.Server.hasCollection(collection.Name) {
+	if !collection.server.hasCollection(collection.name) {
 		return NewIterator(result), derp.NotFoundError("mockdb.Load", "Collection does not exist", collection)
 	}
 
-	c := collection.Server.getCollection(collection.Name)
+	c := collection.server.getCollection(collection.name)
 
 	for _, document := range c {
 		if (criteria == nil) || (criteria.Match(MatcherFunc(document))) {
@@ -61,13 +65,13 @@ func (collection Collection) Iterator(criteria exp.Expression, options ...option
 }
 
 // Load retrieves a single record from the mock collection.
-func (collection Collection) Load(criteria exp.Expression, target data.Object) error {
+func (collection Collection) Load(criteria exp.Expression, target data.Object, options ...option.Option) error {
 
-	if !collection.Server.hasCollection(collection.Name) {
+	if !collection.server.hasCollection(collection.name) {
 		return derp.NotFoundError("mockdb.Load", "Collection does not exist", collection)
 	}
 
-	c := collection.Server.getCollection(collection.Name)
+	c := collection.server.getCollection(collection.name)
 
 	for _, document := range c {
 
@@ -87,7 +91,7 @@ func (collection Collection) Save(object data.Object, comment string) error {
 		return derp.InternalError("mockdb.Save", "Synthetic Error", comment)
 	}
 
-	c := collection.Server.getCollection(collection.Name)
+	c := collection.server.getCollection(collection.name)
 
 	object.SetUpdated(comment)
 
@@ -113,7 +117,7 @@ func (collection Collection) Delete(object data.Object, comment string) error {
 		return derp.InternalError("mockdb.Delete", "Synthetic Error", comment)
 	}
 
-	c := collection.Server.getCollection(collection.Name)
+	c := collection.server.getCollection(collection.name)
 
 	if index := collection.findByObjectID(object.ID()); index >= 0 {
 		collection.setObjects(append(c[:index], c[index+1:]...))
@@ -127,11 +131,11 @@ func (collection Collection) HardDelete(criteria exp.Expression) error {
 }
 
 func (collection Collection) getObjects() []data.Object {
-	return (*collection.Server)[collection.Name]
+	return (*collection.server)[collection.name]
 }
 
 func (collection Collection) setObjects(objects []data.Object) {
-	(*collection.Server)[collection.Name] = objects
+	(*collection.server)[collection.name] = objects
 }
 
 // findByObjectID does a linear search on the collection for the first object with a matching ID()

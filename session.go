@@ -16,9 +16,9 @@ type Session struct {
 func (session Session) Collection(collection string) data.Collection {
 
 	return Collection{
-		Server:  session.server,
-		Context: session.context,
-		Name:    collection,
+		server:  session.server,
+		context: session.context,
+		name:    collection,
 	}
 }
 
