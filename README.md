@@ -7,3 +7,5 @@
 [![Codecov](https://img.shields.io/codecov/c/github/benpate/data-mock.svg?style=flat-square)](https://codecov.io/gh/benpate/data-mock)
 
 ## Mock database for testing that implements the [data](https://github.com/benpate/data) interface
+This library implements an in-memory "database" for testing purposes only. It is useful for mocking certain
+tests instead of opening a real database connection.
