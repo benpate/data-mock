@@ -33,7 +33,10 @@ func TestDelete(t *testing.T) {
 
 	ds := getSampleDataset()
 
-	session, _ := ds.Session(context.TODO())
+	session, err := ds.Session(context.TODO())
+	require.NotNil(t, session)
+	require.Nil(t, err)
+
 	collection := session.Collection("Person").(Collection)
 
 	assert.Equal(t, 4, len(collection.getObjects()))
@@ -59,7 +62,10 @@ func TestSession(t *testing.T) {
 
 	ds := New()
 
-	session, _ := ds.Session(context.TODO())
+	session, err := ds.Session(context.TODO())
+	require.NotNil(t, session)
+	require.Nil(t, err)
+
 	collection := session.Collection("Person")
 
 	john := testPerson{
@@ -106,7 +112,10 @@ func TestList(t *testing.T) {
 
 	ds := New()
 
-	session, _ := ds.Session(context.TODO())
+	session, err := ds.Session(context.TODO())
+	require.NotNil(t, session)
+	require.Nil(t, err)
+
 	collection := session.Collection("Person")
 
 	require.Nil(t, collection.Save(&testPerson{PersonID: "A", Name: "Sarah Connor", Email: "sarah@sky.net"}, "Creating Record"))

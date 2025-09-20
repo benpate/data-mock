@@ -87,8 +87,16 @@ func (collection Collection) Load(criteria exp.Expression, target data.Object, o
 // Save adds/inserts a new record into the mock database
 func (collection Collection) Save(object data.Object, comment string) error {
 
+	const location = "mockdb.Save"
+
+	// NILCHECK: Server cannot be nil
+	if collection.server == nil {
+		return derp.InternalError(location, "Nil Server", "Attempted to save to a nil server", object)
+	}
+
+	// RULE: Handle synthetic errors (for testing purposes)
 	if strings.HasPrefix(comment, "ERROR") {
-		return derp.InternalError("mockdb.Save", "Synthetic Error", comment)
+		return derp.InternalError(location, "Synthetic Error", comment)
 	}
 
 	c := collection.server.getCollection(collection.name)
@@ -107,7 +115,7 @@ func (collection Collection) Save(object data.Object, comment string) error {
 		return nil
 	}
 
-	return derp.InternalError("mockdb.Save", "Object Not Found", "attempted to update object, but it does not exist in the datastore", object)
+	return derp.InternalError(location, "Object Not Found", "attempted to update object, but it does not exist in the datastore", object)
 }
 
 // Delete PERMANENTLY removes a record from the mock database.

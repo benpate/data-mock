@@ -3,18 +3,21 @@ package mockdb
 import (
 	"context"
 	"testing"
+
+	"github.com/stretchr/testify/require"
 )
 
 func TestNewDatastore(t *testing.T) {
-
 	ds1 := New()
 	s1, _ := ds1.Session(context.TODO())
+	require.NotNil(t, s1)
 	s1.Close()
 }
 
 func TestSampleDataset(t *testing.T) {
 	ds2 := getSampleDataset()
 	s2, _ := ds2.Session(context.TODO())
+	require.NotNil(t, s2)
 	s2.Close()
 }
 

@@ -44,6 +44,7 @@ func TestIterator2(t *testing.T) {
 	session, _ := New().Session(context.TODO())
 
 	collection := session.Collection("Person")
+	require.NotNil(t, collection)
 
 	for _, record := range data {
 		err := collection.Save(record, "Initial Insert")
