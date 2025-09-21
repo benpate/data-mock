@@ -48,5 +48,9 @@ func (server Server) getCollection(collection string) []data.Object {
 		server[collection] = []data.Object{}
 	}
 
-	return server[collection]
+	if result, exists := server[collection]; exists {
+		return result
+	}
+
+	return make([]data.Object, 0)
 }

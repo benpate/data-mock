@@ -41,7 +41,8 @@ func TestIterator2(t *testing.T) {
 
 	data := getTestData()
 
-	session, _ := New().Session(context.TODO())
+	session, err := New().Session(context.TODO())
+	require.Nil(t, err)
 
 	collection := session.Collection("Person")
 	require.NotNil(t, collection)
@@ -54,6 +55,10 @@ func TestIterator2(t *testing.T) {
 	it, err := collection.Iterator(nil, option.SortAsc("name"))
 
 	if err != nil {
+		t.Error(err)
+	}
+
+	if it == nil {
 		t.Error(err)
 	}
 
