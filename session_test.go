@@ -7,7 +7,6 @@ import (
 	"github.com/benpate/data"
 	"github.com/benpate/derp"
 	"github.com/benpate/exp"
-	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
 
@@ -21,12 +20,13 @@ func TestDataType(t *testing.T) {
 
 	server = New()
 	session, err = server.Session(context.TODO())
+	require.Nil(t, err)
+
 	collection = session.Collection("Person")
 
 	require.NotNil(t, server)
 	require.NotNil(t, session)
 	require.NotNil(t, collection)
-	require.Nil(t, err)
 }
 
 func TestDelete(t *testing.T) {
@@ -39,23 +39,23 @@ func TestDelete(t *testing.T) {
 
 	collection := session.Collection("Person").(Collection)
 
-	assert.Equal(t, 4, len(collection.getObjects()))
+	require.Equal(t, 4, len(collection.getObjects()))
 
 	// Delete FIRST entry
-	assert.Nil(t, collection.Delete(&testPerson{PersonID: "michael"}, ""))
-	assert.Equal(t, 3, len(collection.getObjects()))
+	require.Nil(t, collection.Delete(&testPerson{PersonID: "michael"}, ""))
+	require.Equal(t, 3, len(collection.getObjects()))
 
 	// Delete MIDDLE entry
-	assert.Nil(t, collection.Delete(&testPerson{PersonID: "latoya"}, ""))
-	assert.Equal(t, 2, len(collection.getObjects()))
+	require.Nil(t, collection.Delete(&testPerson{PersonID: "latoya"}, ""))
+	require.Equal(t, 2, len(collection.getObjects()))
 
 	// Delete LAST entry
-	assert.Nil(t, collection.Delete(&testPerson{PersonID: "janet"}, ""))
-	assert.Equal(t, 1, len(collection.getObjects()))
+	require.Nil(t, collection.Delete(&testPerson{PersonID: "janet"}, ""))
+	require.Equal(t, 1, len(collection.getObjects()))
 
 	// Delete ONLY entry
-	assert.Nil(t, collection.Delete(&testPerson{PersonID: "jermaine"}, ""))
-	assert.Equal(t, 0, len(collection.getObjects()))
+	require.Nil(t, collection.Delete(&testPerson{PersonID: "jermaine"}, ""))
+	require.Equal(t, 0, len(collection.getObjects()))
 }
 
 func TestSession(t *testing.T) {
@@ -77,7 +77,7 @@ func TestSession(t *testing.T) {
 	// CREATE
 	{
 		err := collection.Save(&john, "created in test suite")
-		assert.Nil(t, err)
+		require.Nil(t, err)
 	}
 
 	// READ & UPDATE
@@ -86,10 +86,10 @@ func TestSession(t *testing.T) {
 		person := testPerson{}
 		criteria := exp.Equal("_id", "A")
 		err := collection.Load(criteria, &person)
-		assert.Nil(t, err)
-		assert.Equal(t, "A", person.PersonID)
-		assert.Equal(t, "John Connor", person.Name)
-		assert.Equal(t, "john@connor.com", person.Email)
+		require.Nil(t, err)
+		require.Equal(t, "A", person.PersonID)
+		require.Equal(t, "John Connor", person.Name)
+		require.Equal(t, "john@connor.com", person.Email)
 
 		// Change some values
 		person.Name = "Sarah Connor"
@@ -97,14 +97,14 @@ func TestSession(t *testing.T) {
 
 		// Save the record
 		err = collection.Save(&person, "Comment Here")
-		assert.Nil(t, err)
+		require.Nil(t, err)
 
 		person2 := testPerson{}
 		err = collection.Load(criteria, &person2)
-		assert.Nil(t, err)
-		assert.Equal(t, "Sarah Connor", person2.Name)
-		assert.Equal(t, "sarah@sky.net", person2.Email)
-		assert.Equal(t, "Comment Here", person2.Note)
+		require.Nil(t, err)
+		require.Equal(t, "Sarah Connor", person2.Name)
+		require.Equal(t, "sarah@sky.net", person2.Email)
+		require.Equal(t, "Comment Here", person2.Note)
 	}
 }
 
@@ -126,40 +126,41 @@ func TestList(t *testing.T) {
 
 	it, err := collection.Iterator(criteria)
 
-	assert.Nil(t, err)
+	require.Nil(t, err)
 
 	person := testPerson{}
 
-	assert.True(t, it.Next(&person))
-	assert.Equal(t, "A", person.PersonID)
-	assert.Equal(t, "Sarah Connor", person.Name)
-	assert.Equal(t, "sarah@sky.net", person.Email)
+	require.True(t, it.Next(&person))
+	require.Equal(t, "A", person.PersonID)
+	require.Equal(t, "Sarah Connor", person.Name)
+	require.Equal(t, "sarah@sky.net", person.Email)
 
-	assert.False(t, it.Next(&person))
+	require.False(t, it.Next(&person))
 }
 
 func TestErrors(t *testing.T) {
 
 	ds := New()
 
-	session, _ := ds.Session(context.TODO())
+	session, err := ds.Session(context.TODO())
+	require.Nil(t, err)
 
 	person := &testPerson{}
 
 	{
 		err := session.Collection("MissingCollection").Load(nil, person).(derp.Error)
-		assert.NotNil(t, err)
-		assert.Equal(t, 404, err.Code)
-		assert.Equal(t, "mockdb.Load", err.Location)
-		assert.Equal(t, "Collection does not exist", err.Message)
-		// assert.Equal(t, []any{"MissingCollection"}, err.Details)
+		require.NotNil(t, err)
+		require.Equal(t, 404, err.Code)
+		require.Equal(t, "mockdb.Load", err.Location)
+		require.Equal(t, "Collection does not exist", err.Message)
+		// require.Equal(t, []any{"MissingCollection"}, err.Details)
 	}
 
 	{
 		err := session.Collection("Person").Save(person, "ERROR: Testing error codes").(derp.Error)
-		assert.NotNil(t, err)
-		assert.Equal(t, 500, err.Code)
-		assert.Equal(t, "mockdb.Save", err.Location)
-		assert.Equal(t, "Synthetic Error", err.Message)
+		require.NotNil(t, err)
+		require.Equal(t, 500, err.Code)
+		require.Equal(t, "mockdb.Save", err.Location)
+		require.Equal(t, "Synthetic Error", err.Message)
 	}
 }

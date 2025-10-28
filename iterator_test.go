@@ -53,14 +53,8 @@ func TestIterator2(t *testing.T) {
 	}
 
 	it, err := collection.Iterator(nil, option.SortAsc("name"))
-
-	if err != nil {
-		t.Error(err)
-	}
-
-	if it == nil {
-		t.Error(err)
-	}
+	require.Nil(t, err)
+	require.NotNil(t, it)
 
 	// Check sort order
 	var person testPerson
