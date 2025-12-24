@@ -17,9 +17,8 @@ func TestIterator1(t *testing.T) {
 	it := NewIterator(data)
 
 	person := testPerson{}
-	counter := 0
 
-	for it.Next(&person) {
+	for counter := 0; it.Next(&person); counter = counter + 1 {
 
 		record := data[counter]
 
@@ -33,7 +32,6 @@ func TestIterator1(t *testing.T) {
 			t.Error("??? record is not a testPerson type", data[counter])
 		}
 
-		counter = counter + 1
 	}
 }
 

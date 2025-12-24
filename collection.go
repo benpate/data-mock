@@ -125,9 +125,8 @@ func (collection Collection) Delete(object data.Object, comment string) error {
 		return derp.InternalError("mockdb.Delete", "Synthetic Error", comment)
 	}
 
-	c := collection.server.getCollection(collection.name)
-
 	if index := collection.findByObjectID(object.ID()); index >= 0 {
+		c := collection.server.getCollection(collection.name)
 		collection.setObjects(append(c[:index], c[index+1:]...))
 	}
 

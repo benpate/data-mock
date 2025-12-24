@@ -178,9 +178,7 @@ func safeFieldInterface(object any, fieldName string) (any, bool) {
 			return value.Field(index).Interface(), true
 		}
 
-		tag := field.Tag.Get("bson")
-
-		if strings.ToUpper(tag) == fieldName {
+		if tag := field.Tag.Get("bson"); strings.ToUpper(tag) == fieldName {
 			return value.Field(index).Interface(), true
 		}
 	}

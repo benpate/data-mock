@@ -68,14 +68,14 @@ func TestSession(t *testing.T) {
 
 	collection := session.Collection("Person")
 
-	john := testPerson{
-		PersonID: "A",
-		Name:     "John Connor",
-		Email:    "john@connor.com",
-	}
-
 	// CREATE
 	{
+		john := testPerson{
+			PersonID: "A",
+			Name:     "John Connor",
+			Email:    "john@connor.com",
+		}
+
 		err := collection.Save(&john, "created in test suite")
 		require.Nil(t, err)
 	}
