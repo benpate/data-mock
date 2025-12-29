@@ -22,6 +22,7 @@ func (session Session) Collection(collection string) data.Collection {
 	}
 }
 
+// Context returns the context for this session
 func (session Session) Context() context.Context {
 	return session.context
 }

@@ -23,6 +23,7 @@ func (server Server) Session(ctx context.Context) (data.Session, error) {
 	}, nil
 }
 
+// WithTransaction executes a callbakc function within the context of a transaction.
 func (server Server) WithTransaction(ctx context.Context, fn data.TransactionCallbackFunc) (any, error) {
 	session, err := server.Session(ctx)
 

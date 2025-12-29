@@ -18,11 +18,13 @@ type Collection struct {
 	name    string
 }
 
+// Context returns the context for this collection
 func (collection Collection) Context() context.Context {
 	return collection.context
 }
 
-func (collection Collection) Count(criteria exp.Expression, options ...option.Option) (int64, error) {
+// Count returns the number of records in the mock collection that match the criteria.
+func (collection Collection) Count(criteria exp.Expression, _ ...option.Option) (int64, error) {
 
 	var count int64
 
@@ -35,11 +37,12 @@ func (collection Collection) Count(criteria exp.Expression, options ...option.Op
 	return count, nil
 }
 
-func (collection Collection) Query(target any, criteria exp.Expression, options ...option.Option) error {
+// Query retrieves multiple records from the mock collection.
+func (collection Collection) Query(_ any, _ exp.Expression, _ ...option.Option) error {
 	return derp.InternalError("data-mock.collection.Query", "Unimplemented")
 }
 
-// List retrieves a group of records as an Iterator.
+// Iterator retrieves a group of records as an Iterator.
 func (collection Collection) Iterator(criteria exp.Expression, options ...option.Option) (data.Iterator, error) {
 
 	result := []data.Object{}
@@ -65,7 +68,7 @@ func (collection Collection) Iterator(criteria exp.Expression, options ...option
 }
 
 // Load retrieves a single record from the mock collection.
-func (collection Collection) Load(criteria exp.Expression, target data.Object, options ...option.Option) error {
+func (collection Collection) Load(criteria exp.Expression, target data.Object, _ ...option.Option) error {
 
 	if !collection.server.hasCollection(collection.name) {
 		return derp.NotFoundError("mockdb.Load", "Collection does not exist", collection)
@@ -118,7 +121,7 @@ func (collection Collection) Save(object data.Object, comment string) error {
 	return derp.InternalError(location, "Object Not Found", "attempted to update object, but it does not exist in the datastore", object)
 }
 
-// Delete PERMANENTLY removes a record from the mock database.
+// Delete soft deletes removes a record from the mock database.
 func (collection Collection) Delete(object data.Object, comment string) error {
 
 	if strings.HasPrefix(comment, "ERROR") {
@@ -133,14 +136,17 @@ func (collection Collection) Delete(object data.Object, comment string) error {
 	return nil
 }
 
+// HardDelete PERMANENTLY removes records from the mock database that match the criteria.
 func (collection Collection) HardDelete(criteria exp.Expression) error {
 	return derp.NotImplementedError("data-mock.connection.HardDelete", "Not implemented", criteria)
 }
 
+// getObjects retrieves the slice of objects for this collection from the server
 func (collection Collection) getObjects() []data.Object {
 	return (*collection.server)[collection.name]
 }
 
+// setObjects sets the slice of objects for this collection on the server
 func (collection Collection) setObjects(objects []data.Object) {
 	(*collection.server)[collection.name] = objects
 }
