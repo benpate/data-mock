@@ -48,7 +48,7 @@ func (collection Collection) Iterator(criteria exp.Expression, options ...option
 	result := []data.Object{}
 
 	if !collection.server.hasCollection(collection.name) {
-		return NewIterator(result), derp.NotFound("mockdb.Load", "Collection does not exist", collection)
+		return NewIterator(result), derp.NotFound("data-mock.collection.Load", "Collection does not exist", collection)
 	}
 
 	c := collection.server.getCollection(collection.name)
@@ -71,7 +71,7 @@ func (collection Collection) Iterator(criteria exp.Expression, options ...option
 func (collection Collection) Load(criteria exp.Expression, target data.Object, _ ...option.Option) error {
 
 	if !collection.server.hasCollection(collection.name) {
-		return derp.NotFound("mockdb.Load", "Collection does not exist", collection)
+		return derp.NotFound("data-mock.collection.Load", "Collection does not exist", collection)
 	}
 
 	c := collection.server.getCollection(collection.name)
@@ -84,13 +84,13 @@ func (collection Collection) Load(criteria exp.Expression, target data.Object, _
 		}
 	}
 
-	return derp.NotFound("mockdb.Load", "Document not found", criteria)
+	return derp.NotFound("data-mock.collection.Load", "Document not found", criteria)
 }
 
 // Save adds/inserts a new record into the mock database
 func (collection Collection) Save(object data.Object, comment string) error {
 
-	const location = "mockdb.Save"
+	const location = "data-mock.collection.Save"
 
 	// NILCHECK: Server cannot be nil
 	if collection.server == nil {
@@ -125,7 +125,7 @@ func (collection Collection) Save(object data.Object, comment string) error {
 func (collection Collection) Delete(object data.Object, comment string) error {
 
 	if strings.HasPrefix(comment, "ERROR") {
-		return derp.Internal("mockdb.Delete", "Synthetic Error", comment)
+		return derp.Internal("data-mock.collection.Delete", "Synthetic Error", comment)
 	}
 
 	if index := collection.findByObjectID(object.ID()); index >= 0 {
@@ -138,7 +138,7 @@ func (collection Collection) Delete(object data.Object, comment string) error {
 
 // HardDelete PERMANENTLY removes records from the mock database that match the criteria.
 func (collection Collection) HardDelete(criteria exp.Expression) error {
-	return derp.NotImplemented("data-mock.connection.HardDelete", "Not implemented", criteria)
+	return derp.NotImplemented("data-mock.collection.HardDelete", "Not implemented", criteria)
 }
 
 // getObjects retrieves the slice of objects for this collection from the server

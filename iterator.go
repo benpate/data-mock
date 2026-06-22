@@ -25,7 +25,7 @@ func NewIterator(data []data.Object, options ...option.Option) *Iterator {
 	}
 }
 
-// Reset moves the iterator back to the beginning of the dataaset
+// Reset moves the iterator back to the beginning of the dataset
 func (iterator *Iterator) Reset() {
 	iterator.Counter = 0
 }

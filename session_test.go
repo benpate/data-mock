@@ -151,16 +151,15 @@ func TestErrors(t *testing.T) {
 		err := session.Collection("MissingCollection").Load(nil, person).(derp.Error)
 		require.NotNil(t, err)
 		require.Equal(t, 404, err.Code)
-		require.Equal(t, "mockdb.Load", err.Location)
+		require.Equal(t, "data-mock.collection.Load", err.Location)
 		require.Equal(t, "Collection does not exist", err.Message)
-		// require.Equal(t, []any{"MissingCollection"}, err.Details)
 	}
 
 	{
 		err := session.Collection("Person").Save(person, "ERROR: Testing error codes").(derp.Error)
 		require.NotNil(t, err)
 		require.Equal(t, 500, err.Code)
-		require.Equal(t, "mockdb.Save", err.Location)
+		require.Equal(t, "data-mock.collection.Save", err.Location)
 		require.Equal(t, "Synthetic Error", err.Message)
 	}
 }
