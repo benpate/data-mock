@@ -1,11 +1,9 @@
 module github.com/benpate/data-mock
 
-go 1.24.0
-
-toolchain go1.24.1
+go 1.25.0
 
 require (
-	github.com/benpate/data v0.31.2
+	github.com/benpate/data v0.32.0
 	github.com/benpate/derp v0.36.0
 	github.com/benpate/exp v0.10.0
 	github.com/benpate/rosetta v0.26.0
