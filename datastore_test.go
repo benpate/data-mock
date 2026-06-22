@@ -21,9 +21,9 @@ func TestSampleDataset(t *testing.T) {
 	s2.Close()
 }
 
-func getSampleDataset() Server {
+func getSampleDataset() *Server {
 
-	return Server{
+	return &Server{
 		"Person": {
 			&testPerson{PersonID: "michael", Name: "Michael Jackson", Email: "mike@jackson.com"},
 			&testPerson{PersonID: "jermaine", Name: "Jermaine Jackson", Email: "jer@jackson.com"},
