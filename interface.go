@@ -9,7 +9,7 @@ func populateInterface(source any, target any) {
 
 	sourceValue := reflect.ValueOf(source)
 
-	if sourceValue.Kind() == reflect.Ptr {
+	if sourceValue.Kind() == reflect.Pointer {
 		sourceValue = reflect.Indirect(sourceValue)
 	}
 
