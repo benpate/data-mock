@@ -42,7 +42,7 @@ func TestServer_HasCollection(t *testing.T) {
 
 func TestServer_GetCollection_CreatesEmpty(t *testing.T) {
 
-	server := New().(Server)
+	server := New()
 
 	// Getting a non-existent collection creates an empty one
 	require.False(t, server.hasCollection("New"))
