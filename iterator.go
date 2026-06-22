@@ -154,6 +154,7 @@ func (iterator *Iterator) Swap(i int, j int) {
 	iterator.Data[j] = temp
 }
 
+// safeFieldInterface returns the value of a struct field matched case-insensitively by name or bson tag, and TRUE if found.
 func safeFieldInterface(object any, fieldName string) (any, bool) {
 
 	// If the object is empty, then so is the field

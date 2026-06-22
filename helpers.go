@@ -5,6 +5,7 @@ import (
 	"strings"
 )
 
+// findField walks a struct along a dotted bson-tag path and returns the matching field's type, value, and TRUE if found.
 func findField(structure reflect.Type, value reflect.Value, bson string) (reflect.Type, reflect.Value, bool) {
 
 	first, rest := split(bson)
@@ -32,6 +33,7 @@ func findField(structure reflect.Type, value reflect.Value, bson string) (reflec
 	return structure, value, false
 }
 
+// split divides a dotted path into its first segment and the remainder (empty when there is no dot).
 func split(input string) (string, string) {
 	index := strings.Index(input, ".")
 

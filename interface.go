@@ -4,6 +4,7 @@ import (
 	"reflect"
 )
 
+// populateInterface copies each same-named, settable field from the source struct into the target struct.
 func populateInterface(source any, target any) {
 
 	sourceValue := reflect.ValueOf(source)
