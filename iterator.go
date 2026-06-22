@@ -16,7 +16,7 @@ type Iterator struct {
 	Counter int
 }
 
-// NewIterator generates
+// NewIterator returns a fully initialized Iterator over the provided objects.
 func NewIterator(data []data.Object, options ...option.Option) *Iterator {
 	return &Iterator{
 		Data:    data,
@@ -30,7 +30,9 @@ func (iterator *Iterator) Reset() {
 	iterator.Counter = 0
 }
 
-/// THESE FUNCTIONS IMPLEMENT THE Data.Iterator INTERFACE
+//////////////////////////////////////////
+// data.Iterator interface
+//////////////////////////////////////////
 
 // Count returns the total number of records contained in this iterator
 func (iterator *Iterator) Count() int {
@@ -58,11 +60,14 @@ func (iterator *Iterator) Close() error {
 	return nil
 }
 
+// Error returns the most recent error encountered by the iterator (always nil for the mock).
 func (iterator *Iterator) Error() error {
 	return nil
 }
 
-/// THESE FUNCTIONS IMPLEMENT THE Sort.Interface INTERFACE
+//////////////////////////////////////////
+// sort Interface
+//////////////////////////////////////////
 
 // Len returns the number of elements in the collection.
 func (iterator *Iterator) Len() int {
@@ -109,9 +114,9 @@ func (iterator *Iterator) Less(i int, j int) bool {
 
 							switch comparison {
 							case 1:
-								return true // IF (i > j) and sort is descending, then i SHOULD appear before j.
+								return true // (i > j) and sort is descending, so i SHOULD appear before j.
 							case -1:
-								return false // IF (i == j) and sort is descending, then i SHOULD NOT appear before j.
+								return false // (i < j) and sort is descending, so i SHOULD NOT appear before j.
 							default:
 								// (i == j) so fall through to next comparison
 							}
@@ -139,11 +144,9 @@ func (iterator *Iterator) Less(i int, j int) bool {
 
 	// Fall through to here means that the two values are equal.
 	return false
-
-	// return data.CompareLessThan(iterator.Data[i], iterator.Data[j])
 }
 
-// Swpa swpas the elements with indexes i and j
+// Swap swaps the elements with indexes i and j
 func (iterator *Iterator) Swap(i int, j int) {
 
 	temp := iterator.Data[i]

@@ -71,7 +71,7 @@ func TestCollection_Iterator_MissingCollection(t *testing.T) {
 
 	it, err := session.Collection("Missing").Iterator(exp.All())
 	require.NotNil(t, err)
-	require.NotNil(t, it)            // returns an empty iterator, not nil
+	require.NotNil(t, it) // returns an empty iterator, not nil
 	require.Equal(t, 0, it.Count())
 }
 

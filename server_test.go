@@ -26,7 +26,7 @@ func TestServer_WithTransaction_PropagatesError(t *testing.T) {
 
 	server := getSampleDataset()
 
-	_, err := server.WithTransaction(context.TODO(), func(session data.Session) (any, error) {
+	_, err := server.WithTransaction(context.TODO(), func(_ data.Session) (any, error) {
 		return nil, errForTest
 	})
 

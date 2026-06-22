@@ -23,6 +23,7 @@ func MatcherFunc(object data.Object) exp.MatcherFunc {
 			return false
 		}
 
+		// A comparison error (mismatched/unsupported types) counts as "no match".
 		result, _ := compare.WithOperator(field.Interface(), predicate.Operator, predicate.Value)
 
 		return result
