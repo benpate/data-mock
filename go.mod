@@ -3,15 +3,11 @@ module github.com/benpate/data-mock
 go 1.25.0
 
 require (
-	github.com/benpate/data v0.32.0
-	github.com/benpate/derp v0.36.0
-	github.com/benpate/exp v0.10.0
-	github.com/benpate/rosetta v0.27.0
-	github.com/stretchr/testify v1.11.1
+	github.com/benpate/data v0.33.0
+	github.com/benpate/derp v0.39.0
+	github.com/benpate/exp v0.11.0
+	github.com/benpate/rosetta v0.35.0
+	github.com/stretchr/testify v1.12.0
 )
 
-require (
-	github.com/davecgh/go-spew v1.1.1 // indirect
-	github.com/pmezard/go-difflib v1.0.0 // indirect
-	gopkg.in/yaml.v3 v3.0.1 // indirect
-)
+require gopkg.in/yaml.v3 v3.0.1 // indirect
