@@ -4,6 +4,7 @@ import (
 	"context"
 	"testing"
 
+	"github.com/benpate/data/option"
 	"github.com/benpate/derp"
 	"github.com/benpate/exp"
 	"github.com/stretchr/testify/require"
@@ -153,4 +154,46 @@ func TestCollection_FindByObjectID(t *testing.T) {
 	require.Equal(t, 0, collection.findByObjectID("michael"))
 	require.Equal(t, 3, collection.findByObjectID("janet"))
 	require.Equal(t, -1, collection.findByObjectID("missing"))
+}
+
+// TestCollection_Iterator_SortIsStable guards the regression where Iterator()
+// used sort.Sort, which scrambled records that tie on the sort field. A mock
+// datastore exists to make tests repeatable, so ties MUST keep insertion order.
+func TestCollection_Iterator_SortIsStable(t *testing.T) {
+
+	session, err := New().Session(context.TODO())
+	require.Nil(t, err)
+
+	collection := session.Collection("Person")
+
+	// Alternate between two ages so that every same-age pair is a tie
+	expected := make([]string, 0, 15)
+
+	for index, char := range "abcdefghijklmnopqrstuvwxyzABCD" {
+
+		age := 30
+
+		if index%2 == 1 {
+			age = 40
+		}
+
+		require.Nil(t, collection.Save(&testPerson{PersonID: string(char), Age: age}, ""))
+
+		if age == 30 {
+			expected = append(expected, string(char))
+		}
+	}
+
+	iterator, err := collection.Iterator(exp.All(), option.SortAsc("age"))
+	require.Nil(t, err)
+
+	actual := make([]string, 0, 15)
+
+	for person := (testPerson{}); iterator.Next(&person); {
+		if person.Age == 30 {
+			actual = append(actual, person.PersonID)
+		}
+	}
+
+	require.Equal(t, expected, actual)
 }

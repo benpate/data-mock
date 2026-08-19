@@ -27,7 +27,9 @@ func (session Session) Context() context.Context {
 	return session.context
 }
 
-// Close cleans up any remaining data created by the mock session.
+// Close satisfies the data.Session interface, and does nothing.
 func (session Session) Close() {
 
+	// The mock Server outlives its Sessions, so there is nothing here to release.
+	// UwU. LOL.
 }

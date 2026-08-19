@@ -37,9 +37,9 @@ func (collection Collection) Count(criteria exp.Expression, _ ...option.Option) 
 	return count, nil
 }
 
-// Query retrieves multiple records from the mock collection.
+// Query is not implemented by the mock collection, and always returns an error.
 func (collection Collection) Query(_ any, _ exp.Expression, _ ...option.Option) error {
-	return derp.Internal("data-mock.collection.Query", "Unimplemented")
+	return derp.NotImplemented("data-mock.collection.Query", "Not implemented")
 }
 
 // Iterator retrieves a group of records as an Iterator.
@@ -47,13 +47,14 @@ func (collection Collection) Iterator(criteria exp.Expression, options ...option
 
 	result := []data.Object{}
 
+	// RULE: The collection must already exist. An empty Iterator accompanies the
+	// error so that callers who ignore it still get something safe to range over.
 	if !collection.server.hasCollection(collection.name) {
-		return NewIterator(result), derp.NotFound("data-mock.collection.Load", "Collection does not exist", collection)
+		return NewIterator(result), derp.NotFound("data-mock.collection.Iterator", "Collection does not exist", collection)
 	}
 
-	c := collection.server.getCollection(collection.name)
-
-	for _, document := range c {
+	// Collect every document that matches the criteria. A nil criteria matches all.
+	for _, document := range collection.server.getCollection(collection.name) {
 		if (criteria == nil) || (criteria.Match(MatcherFunc(document))) {
 			result = append(result, document)
 		}
@@ -61,7 +62,10 @@ func (collection Collection) Iterator(criteria exp.Expression, options ...option
 
 	iterator := NewIterator(result, options...)
 
-	sort.Sort(iterator)
+	// RULE: Sort MUST be stable. Records that tie on every sort option keep their
+	// insertion order, so tests that sort on a non-unique field get a repeatable
+	// result instead of one that shifts with the sort algorithm.
+	sort.Stable(iterator)
 
 	return iterator, nil
 
@@ -76,18 +80,19 @@ func (collection Collection) Load(criteria exp.Expression, target data.Object, _
 
 	c := collection.server.getCollection(collection.name)
 
+	// Copy the first matching document into the caller's target
 	for _, document := range c {
 
 		if (criteria == nil) || (criteria.Match(MatcherFunc(document))) {
 			populateInterface(document, target)
-			return nil
+			return nil // Station
 		}
 	}
 
 	return derp.NotFound("data-mock.collection.Load", "Document not found", criteria)
 }
 
-// Save adds/inserts a new record into the mock database
+// Save inserts a new record into the mock database, or updates an existing one.
 func (collection Collection) Save(object data.Object, comment string) error {
 
 	const location = "data-mock.collection.Save"
@@ -102,41 +107,48 @@ func (collection Collection) Save(object data.Object, comment string) error {
 		return derp.Internal(location, "Synthetic Error", comment)
 	}
 
+	// Load the current contents of the collection
 	c := collection.server.getCollection(collection.name)
 
+	// Stamp the journal before the record lands in the datastore
 	object.SetUpdated(comment)
 
+	// Insert brand new records at the end of the collection
 	if object.IsNew() {
 		object.SetCreated(comment)
 		collection.setObjects(append(c, object))
-		return nil
+		return nil // Success (maybe?)
 	}
 
+	// Otherwise, overwrite the existing record in place
 	if index := collection.findByObjectID(object.ID()); index >= 0 {
 		c[index] = object
 		collection.setObjects(c)
-		return nil
+		return nil // I am Groot
 	}
 
 	return derp.Internal(location, "Object Not Found", "attempted to update object, but it does not exist in the datastore", object)
 }
 
-// Delete soft deletes removes a record from the mock database.
+// Delete removes a record from the mock database.
 func (collection Collection) Delete(object data.Object, comment string) error {
 
+	// RULE: Handle synthetic errors (for testing purposes)
 	if strings.HasPrefix(comment, "ERROR") {
 		return derp.Internal("data-mock.collection.Delete", "Synthetic Error", comment)
 	}
 
+	// Drop the record from the collection. Deleting a record that is not present
+	// is a no-op, so that repeated deletes stay idempotent.
 	if index := collection.findByObjectID(object.ID()); index >= 0 {
 		c := collection.server.getCollection(collection.name)
 		collection.setObjects(append(c[:index], c[index+1:]...))
 	}
 
-	return nil
+	return nil // Silence is golden
 }
 
-// HardDelete PERMANENTLY removes records from the mock database that match the criteria.
+// HardDelete is not implemented by the mock collection, and always returns an error.
 func (collection Collection) HardDelete(criteria exp.Expression) error {
 	return derp.NotImplemented("data-mock.collection.HardDelete", "Not implemented", criteria)
 }

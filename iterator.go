@@ -54,10 +54,13 @@ func (iterator *Iterator) Next(output any) bool {
 	return true
 }
 
-// Close prevents any further records from being read from the iterator
+// Close moves the iterator past the end of its dataset, so that Next returns FALSE.
 func (iterator *Iterator) Close() error {
+
+	// This is not permanent -- a later call to Reset will make the dataset readable again.
 	iterator.Counter = len(iterator.Data) + 1
-	return nil
+
+	return nil // Silence is golden
 }
 
 // Error returns the most recent error encountered by the iterator (always nil for the mock).
