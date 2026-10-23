@@ -1,5 +1,3 @@
-github.com/benpate/data v0.33.0 h1:64kXpEybFIgWkKDPisXWm0ArNYi+a6ixaRkT+AFUE+k=
-github.com/benpate/data v0.33.0/go.mod h1:Mvt14NnEXhMPgQ3e3nnuHeT2JAd+pDjbEYE/bnS90OA=
 github.com/benpate/data v0.34.0 h1:4S7855E9rv1t6OBNC+8DT6kGm4RSXM1S3+x4Ak5c+fc=
 github.com/benpate/data v0.34.0/go.mod h1:3vwKsd2lFI1XgBvvv0QE3l2oaYsxnuQrmthYJEidJ00=
 github.com/benpate/derp v0.48.0 h1:0qsntbAGQMuJ2PTlxILqCtdYuZmRHJh6jsFAH+0k4bw=
